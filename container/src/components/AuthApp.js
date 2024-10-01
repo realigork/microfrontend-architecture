@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
-import { mount } from 'marketing/MarketingApp';
+import { mount } from 'auth/AuthApp';
 import { useHistory } from 'react-router-dom';
 
-export default () => {
+export default ({ onSignIn }) => {
   const ref = useRef(null);
   const history = useHistory();
 
@@ -14,8 +14,10 @@ export default () => {
         if (history.location.pathname !== nextPathname) {
           history.push(nextPathname);
         }
-
-        console.log('The container noticed navigation in Marketing');
+      },
+      onSignIn: () => {
+        console.log('Container: User Signed In');
+        onSignIn();
       },
     });
 
